@@ -1,0 +1,15 @@
+{"ts":"2026-07-15T09:12:03+00:00","event":"validation_rejected","subject":"admin@example.test' -- ","ip":"203.0.113.7","detail":{"field":"identifier"}}
+{"ts":"2026-07-15T09:14:41+00:00","event":"login_failed","subject":"student1@example.test","ip":"203.0.113.7","detail":[]}
+{"ts":"2026-07-15T09:14:52+00:00","event":"login_failed","subject":"student1@example.test","ip":"203.0.113.7","detail":[]}
+{"ts":"2026-07-15T09:15:03+00:00","event":"login_failed","subject":"student1@example.test","ip":"203.0.113.7","detail":[]}
+{"ts":"2026-07-15T09:15:14+00:00","event":"login_failed","subject":"student1@example.test","ip":"203.0.113.7","detail":[]}
+{"ts":"2026-07-15T09:15:25+00:00","event":"login_failed","subject":"student1@example.test","ip":"203.0.113.7","detail":[]}
+{"ts":"2026-07-15T09:15:25+00:00","event":"account_locked","subject":"student1@example.test","ip":"203.0.113.7","detail":{"minutes":15}}
+{"ts":"2026-07-15T09:15:40+00:00","event":"login_denied_locked","subject":"student1@example.test","ip":"203.0.113.7","detail":[]}
+{"ts":"2026-07-15T10:02:11+00:00","event":"csrf_rejected","subject":null,"ip":"198.51.100.22","detail":{"form":"course_enrol"}}
+{"ts":"2026-07-15T10:07:48+00:00","event":"ssrf_blocked","subject":"student2@example.test","ip":"198.51.100.22","detail":{"url":"http:\/\/169.254.169.254\/","reason":"Only https URLs are permitted"}}
+{"ts":"2026-07-15T10:08:02+00:00","event":"ssrf_blocked","subject":"student2@example.test","ip":"198.51.100.22","detail":{"url":"https:\/\/127.0.0.1\/","reason":"Host is not on the approved allowlist"}}
+{"ts":"2026-07-15T10:20:36+00:00","event":"authorization_denied","subject":"student2@example.test","ip":"198.51.100.22","detail":{"required_role":"admin"}}
+{"ts":"2026-07-15T10:21:04+00:00","event":"account_created","subject":"newstudent@example.test","ip":"198.51.100.5","detail":[]}
+{"ts":"2026-07-15T10:33:19+00:00","event":"password_reset_requested","subject":"student1@example.test","ip":"203.0.113.9","detail":[]}
+{"ts":"2026-07-15T10:35:47+00:00","event":"password_reset_completed","subject":"3","ip":"203.0.113.9","detail":[]}

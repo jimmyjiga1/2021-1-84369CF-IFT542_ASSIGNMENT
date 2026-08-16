@@ -1,0 +1,58 @@
+digraph DFD {
+  rankdir=LR;
+  fontname="Helvetica";
+  node [fontname="Helvetica", fontsize=11];
+  edge [fontname="Helvetica", fontsize=9];
+
+  // External entities
+  node [shape=box, style=filled, fillcolor="#dbe9ff", color="#1a3d6d"];
+  Student [label="Student\n(browser)"];
+  Admin [label="Admin\n(browser)"];
+  External [label="External Verification Site\n(allowlisted host)"];
+
+  // Processes
+  node [shape=ellipse, style=filled, fillcolor="#fff3cd", color="#8a6d00"];
+  Auth [label="P1: Authentication\n(login.php / Auth.php)"];
+  Profile [label="P2: Profile Update\n(dashboard.php)"];
+  Enrol [label="P3: Course Enrolment\n(courses.php)"];
+  Upload [label="P4: Document Upload\n(upload.php)"];
+  Preview [label="P5: Link Preview\n(url_preview.php + UrlGuard)"];
+  AdminSearch [label="P6: Admin Student Search\n(admin/students.php)"];
+
+  // Data stores
+  node [shape=cylinder, style=filled, fillcolor="#e2f0d9", color="#375623"];
+  DB [label="MySQL:\nusers, login_attempts,\naccount_lockouts, courses,\nenrolments, documents,\nsecurity_events"];
+  FS [label="storage/uploads\n(outside web root)"];
+  Log [label="storage/logs/\nsecurity.log"];
+
+  // Trust boundary
+  subgraph cluster_server {
+    label = "Trust Boundary: Application Server";
+    style = dashed;
+    color = "#888888";
+    Auth; Profile; Enrol; Upload; Preview; AdminSearch; DB; FS; Log;
+  }
+
+  Student -> Auth [label="1 credentials (TLS)"];
+  Auth -> DB [label="2 parameterised lookup"];
+  Auth -> Log [label="3 login_failed / account_locked"];
+  Auth -> Student [label="4 session cookie\n(HttpOnly,Secure,SameSite)"];
+
+  Student -> Profile [label="5 full_name, bio + CSRF token"];
+  Profile -> DB [label="6 parameterised update"];
+
+  Student -> Enrol [label="7 course_id + CSRF token"];
+  Enrol -> DB [label="8 tx: capacity check + insert"];
+
+  Student -> Upload [label="9 file (multipart)"];
+  Upload -> FS [label="10 random filename, content-sniffed type"];
+  Upload -> DB [label="11 metadata insert"];
+
+  Student -> Preview [label="12 url + CSRF token"];
+  Preview -> External [label="13 https GET\n(allowlist + IP re-check,\nno redirect follow)", style=dashed];
+
+  Admin -> AdminSearch [label="14 search term (role-checked)"];
+  AdminSearch -> DB [label="15 parameterised LIKE query"];
+
+  DB -> Log [label="16 security_events mirror"];
+}

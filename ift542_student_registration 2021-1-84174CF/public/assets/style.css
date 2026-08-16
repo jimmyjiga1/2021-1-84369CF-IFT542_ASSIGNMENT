@@ -1,0 +1,253 @@
+/* ============================================================
+   Student Registry — "Registrar's Office" theme
+   Navy + brass, security-paper texture, stamp-style notices.
+   ============================================================ */
+
+/* No external font imports -- fully offline. System font stacks are
+   chosen to echo the same "diploma serif / civic sans / mono ledger"
+   feel as the original Spectral / Public Sans / IBM Plex Mono pairing,
+   using faces that ship with Windows, macOS and Linux by default. */
+
+:root {
+  --paper:        #EEF1EF;
+  --paper-line:   #E1E6E2;
+  --ink:          #16233F;
+  --ink-soft:     #4B5670;
+  --brass:        #9C6B1F;
+  --brass-deep:   #7A5216;
+  --brass-pale:   #EADFC4;
+  --stamp-green:  #2B5233;
+  --stamp-red:    #8B2A2A;
+  --line:         #D7D3C3;
+  --card:         #FFFFFF;
+  --radius: 3px;
+  --font-display: Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-body: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: Consolas, 'SFMono-Regular', Menlo, 'Liberation Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--paper-line) 0px, var(--paper-line) 1px,
+    transparent 1px, transparent 34px
+  );
+  min-height: 100vh;
+  line-height: 1.55;
+  font-size: 15.5px;
+}
+
+/* ---------------- Letterhead / header ---------------- */
+.letterhead {
+  background: var(--ink);
+  border-bottom: 3px solid var(--brass);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.15);
+}
+.letterhead-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.brand {
+  color: #F3EEDD;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand-mark {
+  color: var(--brass);
+  font-size: 13px;
+  display: inline-block;
+}
+.letterhead nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.letterhead nav a {
+  color: #CBD3E1;
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 8px 11px;
+  border-radius: var(--radius);
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.letterhead nav a:hover,
+.letterhead nav a:focus-visible,
+.letterhead nav a[aria-current="page"] {
+  color: #FFFFFF;
+  border-bottom-color: var(--brass);
+}
+
+/* ---------------- Main sheet / card ---------------- */
+main.sheet {
+  max-width: 780px;
+  margin: 40px auto 64px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 40px 44px 44px;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(22,35,63,0.04), 0 8px 28px rgba(22,35,63,0.06);
+}
+main.sheet.narrow { max-width: 480px; }
+
+main.sheet::before, main.sheet::after,
+main.sheet .corner-br, main.sheet .corner-bl {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--brass);
+  opacity: 0.85;
+}
+main.sheet::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+main.sheet::after   { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+main.sheet .corner-bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+main.sheet .corner-br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+/* ---------------- Typography ---------------- */
+h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 27px;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--ink);
+  margin: 32px 0 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+main.sheet > h1 + h2, main.sheet > h1 + p + h2 { border-top: none; padding-top: 0; }
+
+.eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass-deep);
+  margin-bottom: 10px;
+}
+
+p { margin: 0 0 14px; color: var(--ink-soft); }
+a { color: var(--brass-deep); }
+a:hover { color: var(--brass); }
+
+/* ---------------- Forms ---------------- */
+form { margin: 22px 0 6px; }
+
+label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 5px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+input[type="text"], input[type="email"], input[type="password"],
+input[type="url"], input[type="number"], input[type="file"],
+textarea, select {
+  width: 100%;
+  padding: 9px 2px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--line);
+  border-radius: 0;
+  transition: border-color 0.15s ease;
+}
+textarea { border: 1.5px solid var(--line); padding: 10px 12px; border-radius: var(--radius); resize: vertical; }
+input[type="file"] { border-bottom: none; padding: 6px 0; font-size: 13.5px; }
+
+input:focus, textarea:focus, select:focus { outline: none; border-color: var(--brass); }
+input:focus-visible, textarea:focus-visible, select:focus-visible,
+a:focus-visible, button:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+button, .btn {
+  margin-top: 22px;
+  padding: 11px 22px;
+  background: var(--ink);
+  color: #F3EEDD;
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+button:hover { background: var(--brass-deep); }
+button:active { transform: translateY(1px); }
+button:disabled { background: var(--line); color: #8B8F86; cursor: not-allowed; }
+td form button { margin-top: 0; padding: 7px 14px; font-size: 11px; }
+
+/* ---------------- Stamp-style notices ---------------- */
+.stamp {
+  display: inline-block;
+  margin: 4px 0 20px;
+  padding: 9px 18px;
+  border: 2px solid currentColor;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: rotate(-1.6deg);
+  position: relative;
+}
+.stamp::before { content: ""; position: absolute; inset: 3px; border: 1px solid currentColor; opacity: 0.5; pointer-events: none; }
+.stamp ul { margin: 4px 0 0 18px; padding: 0; text-transform: none; letter-spacing: normal; font-weight: 500; }
+.stamp-notice { color: var(--stamp-green); background: rgba(43,82,51,0.05); }
+.stamp-error  { color: var(--stamp-red);   background: rgba(139,42,42,0.05); }
+
+/* ---------------- Ledger tables ---------------- */
+table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 14px; }
+th {
+  background: var(--ink); color: #E8E2CE; text-align: left; padding: 10px 12px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  border-bottom: 2px solid var(--brass);
+}
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: middle; }
+tr:nth-child(even) td { background: rgba(156,107,31,0.035); }
+tr:hover td { background: rgba(156,107,31,0.08); }
+.mono, td.mono, table code { font-family: var(--font-mono); font-size: 13px; }
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 620px) {
+  main.sheet { margin: 0; border-radius: 0; border-left: none; border-right: none; padding: 28px 20px 32px; }
+  .letterhead-inner { padding: 12px 16px; }
+  .letterhead nav a { padding: 7px 8px; font-size: 11.5px; }
+  h1 { font-size: 23px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
