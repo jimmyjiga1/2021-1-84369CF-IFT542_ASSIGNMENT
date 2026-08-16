@@ -77,12 +77,12 @@ SECURITY_NOTES.md        Before/after code excerpts, one per finding
 - Global security response headers, fail-closed error display -- security misconfiguration
 - Structured, redacted security-event logging to file + DB (`src/Logger.php`)
 
-## Notes on scope / honesty about what this is
+## Notes on scope
 
 - This app is for local coursework use only; it has not been
-  penetration-tested against a live deployment.
+  penetration tested against a live deployment.
 - The `legacy/` files intentionally contain vulnerable patterns for
-  educational before/after comparison. They are never included or
+  before/after comparison. They are never included or
   routed by any file in `public/`.
 - MFA, a WAF, and automated dependency scanning are documented as
   recommended future work in `docs/risk_register.md` rather than
