@@ -25,7 +25,7 @@ legacy/                 VULNERABLE baseline snippets, NOT routed --
 scripts/generate_hash.php   CLI helper to generate a real Argon2id hash
 tests/
   run_tests.php          Plain-PHP unit tests (no Composer needed)
-  README.md              Manual/DB-backed test plan for evidence screenshots
+
 docs/
   dfd_diagram.png/.svg    Data-flow diagram (also see dfd.dot source)
   stride_worksheet.md     Full STRIDE analysis per data flow
@@ -33,6 +33,7 @@ docs/
   incident_response_runbook.md
   sample_logs/            Redacted fictitious log sample
 SECURITY_NOTES.md        Before/after code excerpts, one per finding
+IFT542_TECHNICAL_REPORT 2021-1-84174CF.docx  TECHNICAL REPORT ON ASSIGNEMENT
 ```
 
 ## Local setup (XAMPP/MAMP/native PHP + MySQL)
